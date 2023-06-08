@@ -45,6 +45,15 @@ class CourseTableViewController: UITableViewController {
         return cell
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let lecture = course.lectures[indexPath.row]
+        let lectureVC = LectureViewController()
+        lectureVC.lecture = lecture
+        
+        navigationController?.pushViewController(lectureVC, animated: true)
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -16,6 +16,7 @@
 		D301FDAA2A31EA1D000218F5 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301FDA92A31EA1D000218F5 /* Course.swift */; };
 		D301FDAC2A31EC53000218F5 /* CourseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301FDAB2A31EC53000218F5 /* CourseStorage.swift */; };
 		D301FDAE2A31F026000218F5 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301FDAD2A31F026000218F5 /* CourseTableViewController.swift */; };
+		D32C96812A3203FF005FE7EF /* LectureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C96802A3203FF005FE7EF /* LectureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D301FDA92A31EA1D000218F5 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		D301FDAB2A31EC53000218F5 /* CourseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseStorage.swift; sourceTree = "<group>"; };
 		D301FDAD2A31F026000218F5 /* CourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
+		D32C96802A3203FF005FE7EF /* LectureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +64,10 @@
 		D301FD8E2A31DC88000218F5 /* YandexLecture */ = {
 			isa = PBXGroup;
 			children = (
+				D32C967F2A320305005FE7EF /* UI */,
 				D301FDA62A31E944000218F5 /* Model */,
 				D301FDA32A31E874000218F5 /* DataLecture */,
-				D301FD8F2A31DC88000218F5 /* AppDelegate.swift */,
-				D301FD912A31DC88000218F5 /* SceneDelegate.swift */,
-				D301FDAD2A31F026000218F5 /* CourseTableViewController.swift */,
-				D301FD982A31DC89000218F5 /* Assets.xcassets */,
-				D301FD9A2A31DC89000218F5 /* LaunchScreen.storyboard */,
+				D32C967E2A3202F4005FE7EF /* Helping */,
 				D301FD9D2A31DC89000218F5 /* Info.plist */,
 			);
 			path = YandexLecture;
@@ -90,6 +89,26 @@
 				D301FDA92A31EA1D000218F5 /* Course.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D32C967E2A3202F4005FE7EF /* Helping */ = {
+			isa = PBXGroup;
+			children = (
+				D301FD8F2A31DC88000218F5 /* AppDelegate.swift */,
+				D301FD912A31DC88000218F5 /* SceneDelegate.swift */,
+				D301FD982A31DC89000218F5 /* Assets.xcassets */,
+				D301FD9A2A31DC89000218F5 /* LaunchScreen.storyboard */,
+			);
+			path = Helping;
+			sourceTree = "<group>";
+		};
+		D32C967F2A320305005FE7EF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D301FDAD2A31F026000218F5 /* CourseTableViewController.swift */,
+				D32C96802A3203FF005FE7EF /* LectureViewController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D301FDAC2A31EC53000218F5 /* CourseStorage.swift in Sources */,
+				D32C96812A3203FF005FE7EF /* LectureViewController.swift in Sources */,
 				D301FD902A31DC88000218F5 /* AppDelegate.swift in Sources */,
 				D301FDAA2A31EA1D000218F5 /* Course.swift in Sources */,
 				D301FDAE2A31F026000218F5 /* CourseTableViewController.swift in Sources */,
