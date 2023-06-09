@@ -167,7 +167,7 @@ extension LectureViewController {
             paragraphStyle.firstLineHeadIndent = 15.0
             paragraphStyle.lineSpacing = 4.0
             paragraphStyle.headIndent = 5.0
-            paragraphStyle.paragraphSpacing = 10.0
+            paragraphStyle.paragraphSpacing = 2.0
             paragraphStyle.baseWritingDirection = .natural
             
             let attributes: [NSAttributedString.Key: Any] = [
