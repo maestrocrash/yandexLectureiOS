@@ -12,6 +12,7 @@ class CourseTableViewController: UITableViewController {
     private lazy var cellID: String = "cellID"
     private let dateFormatterGet = DateFormatter()
     private let dateFormatterPrint = DateFormatter()
+    private let dateTodayFormatter = DateFormatter()
 
     let backgroundView = #colorLiteral(red: 0.02744890936, green: 0.02745261975, blue: 0.09043943137, alpha: 1)
     let yellowProject = #colorLiteral(red: 0.9903424382, green: 0.8046727777, blue: 0.003792768111, alpha: 1)
@@ -58,34 +59,47 @@ class CourseTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! LectureTableViewCell
         
         cell.accessoryType = .disclosureIndicator
-        
+
         let lecture = course.lectures[indexPath.row]
         let prefix = String(format: "%02d", indexPath.row)
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatterPrint.dateFormat = "E, dd MMMM, yyyy в HH:mm"
-        
+        dateTodayFormatter.dateFormat = "yyyy-MM-dd"
+                                
+        print(lecture.date)
         
         cell.labelTitle.text = "\(prefix) - \(lecture.name)"
-        
-        if let date = dateFormatterGet.date(from: lecture.date) {
-            print(dateFormatterPrint.string(from: date))
-            cell.labelDate.text = dateFormatterPrint.string(for: date)
-        }
-        
-        cell.labelNamePosition.text = lecture.namePosition
         
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = backgroundView
             cell.labelTitle.textColor = yellowProject
             cell.labelDate.textColor = yellowProject
             cell.labelNamePosition.textColor = yellowProject
+            
+            let backGround = UIView()
+            backGround.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            cell.selectedBackgroundView = backGround
         } else {
             cell.backgroundColor = #colorLiteral(red: 0.9098735777, green: 0.9098735777, blue: 0.9098735777, alpha: 0.8420758929)
             cell.labelTitle.textColor = .black
             cell.labelDate.textColor = .black
             cell.labelNamePosition.textColor = .black
         }
+        
+        let test = dateTodayFormatter.string(from: Date())
 
+        if let date = dateFormatterGet.date(from: lecture.date){
+            if dateTodayFormatter.string(from: date) == test {
+                cell.backgroundColor = yellowProject
+                cell.labelTitle.textColor = backgroundView
+                cell.labelDate.textColor = backgroundView
+                cell.labelNamePosition.textColor = backgroundView
+            }
+            cell.labelDate.text = dateFormatterPrint.string(for: date)
+        }
+        
+        cell.labelNamePosition.text = lecture.namePosition
+        
         return cell
     }
     
