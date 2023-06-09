@@ -10,7 +10,7 @@ import Foundation
 struct Lecture: Codable {
     var name: String
     var description: String
-    var date: Date
+    var date: String
     var urlYoutube: String
     var avatar: String?
     var position: String?

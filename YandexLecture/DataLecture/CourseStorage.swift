@@ -16,7 +16,6 @@ struct CourseStorage {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
         return try! jsonDecoder.decode(Course.self, from: data)
-        
     }
     
     

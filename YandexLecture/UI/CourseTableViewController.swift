@@ -10,6 +10,11 @@ import UIKit
 class CourseTableViewController: UITableViewController {
     
     private lazy var cellID: String = "cellID"
+    private let dateFormatterGet = DateFormatter()
+    private let dateFormatterPrint = DateFormatter()
+
+    let backgroundView = #colorLiteral(red: 0.02744890936, green: 0.02745261975, blue: 0.09043943137, alpha: 1)
+    let yellowProject = #colorLiteral(red: 0.9903424382, green: 0.8046727777, blue: 0.003792768111, alpha: 1)
 
     private lazy var course: Course = {
        let storage = CourseStorage()
@@ -19,11 +24,24 @@ class CourseTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = backgroundView
         navigationItem.title = course.name
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = yellowProject
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        let standardAppearance = UINavigationBarAppearance()
+        
+        standardAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: yellowProject]
+ 
+        standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: yellowProject]
+        standardAppearance.backgroundColor = backgroundView
+        navigationController?.navigationBar.standardAppearance = standardAppearance
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = course.name
+        navigationItem.backBarButtonItem = backItem
+        
+        tableView.register(LectureTableViewCell.self, forCellReuseIdentifier: cellID)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,10 +55,36 @@ class CourseTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! LectureTableViewCell
+        
+        cell.accessoryType = .disclosureIndicator
+        
         let lecture = course.lectures[indexPath.row]
         let prefix = String(format: "%02d", indexPath.row)
-        cell.textLabel?.text = "\(prefix) - \(lecture.name)"
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatterPrint.dateFormat = "E, dd MMMM, yyyy в HH:mm"
+        
+        
+        cell.labelTitle.text = "\(prefix) - \(lecture.name)"
+        
+        if let date = dateFormatterGet.date(from: lecture.date) {
+            print(dateFormatterPrint.string(from: date))
+            cell.labelDate.text = dateFormatterPrint.string(for: date)
+        }
+        
+        cell.labelNamePosition.text = lecture.namePosition
+        
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = backgroundView
+            cell.labelTitle.textColor = yellowProject
+            cell.labelDate.textColor = yellowProject
+            cell.labelNamePosition.textColor = yellowProject
+        } else {
+            cell.backgroundColor = #colorLiteral(red: 0.9098735777, green: 0.9098735777, blue: 0.9098735777, alpha: 0.8420758929)
+            cell.labelTitle.textColor = .black
+            cell.labelDate.textColor = .black
+            cell.labelNamePosition.textColor = .black
+        }
 
         return cell
     }
@@ -54,52 +98,6 @@ class CourseTableViewController: UITableViewController {
         navigationController?.pushViewController(lectureVC, animated: true)
         
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    
-    // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .insert {
-//            // Delete the row from the data source
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }
-//    }
-//
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
