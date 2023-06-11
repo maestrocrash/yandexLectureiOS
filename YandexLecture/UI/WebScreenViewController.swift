@@ -10,9 +10,6 @@ import WebKit
 
 class WebScreenViewController: UIViewController, WKNavigationDelegate {
 
-    let backgroundView = #colorLiteral(red: 0.02744890936, green: 0.02745261975, blue: 0.09043943137, alpha: 1)
-    let yellowProject = #colorLiteral(red: 0.9903424382, green: 0.8046727777, blue: 0.003792768111, alpha: 1)
-    
     lazy var webView: WKWebView = {
         let web = WKWebView()
         web.navigationDelegate = self
@@ -36,7 +33,7 @@ class WebScreenViewController: UIViewController, WKNavigationDelegate {
             webView.load(URLRequest(url: url))
         }
          
-        view.backgroundColor = backgroundView
+        view.backgroundColor = colorView
         view.addSubview(webView)
         
         setupConstraint()

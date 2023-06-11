@@ -14,9 +14,6 @@ class CourseTableViewController: UITableViewController {
     private let dateFormatterPrint = DateFormatter()
     private let dateTodayFormatter = DateFormatter()
 
-    let backgroundView = #colorLiteral(red: 0.02744890936, green: 0.02745261975, blue: 0.09043943137, alpha: 1)
-    let yellowProject = #colorLiteral(red: 0.9903424382, green: 0.8046727777, blue: 0.003792768111, alpha: 1)
-
     private lazy var course: Course = {
        let storage = CourseStorage()
         return storage.load()
@@ -25,17 +22,17 @@ class CourseTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = backgroundView
+        view.backgroundColor = colorView
         navigationItem.title = course.name
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = yellowProject
+        navigationController?.navigationBar.tintColor = colorYellow
         
         let standardAppearance = UINavigationBarAppearance()
         
-        standardAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: yellowProject]
+        standardAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: colorYellow]
  
-        standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: yellowProject]
-        standardAppearance.backgroundColor = backgroundView
+        standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: colorYellow]
+        standardAppearance.backgroundColor = colorView
         navigationController?.navigationBar.standardAppearance = standardAppearance
         
         let backItem = UIBarButtonItem()
@@ -71,10 +68,10 @@ class CourseTableViewController: UITableViewController {
         cell.labelTitle.text = "\(prefix) - \(lecture.name)"
         
         if indexPath.row % 2 == 0 {
-            cell.backgroundColor = backgroundView
-            cell.labelTitle.textColor = yellowProject
-            cell.labelDate.textColor = yellowProject
-            cell.labelNamePosition.textColor = yellowProject
+            cell.backgroundColor = colorView
+            cell.labelTitle.textColor = colorYellow
+            cell.labelDate.textColor = colorYellow
+            cell.labelNamePosition.textColor = colorYellow
             
             let backGround = UIView()
             backGround.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -90,10 +87,10 @@ class CourseTableViewController: UITableViewController {
 
         if let date = dateFormatterGet.date(from: lecture.date){
             if dateTodayFormatter.string(from: date) == test {
-                cell.backgroundColor = yellowProject
-                cell.labelTitle.textColor = backgroundView
-                cell.labelDate.textColor = backgroundView
-                cell.labelNamePosition.textColor = backgroundView
+                cell.backgroundColor = colorYellow
+                cell.labelTitle.textColor = colorView
+                cell.labelDate.textColor = colorView
+                cell.labelNamePosition.textColor = colorView
             }
             cell.labelDate.text = dateFormatterPrint.string(for: date)
         }

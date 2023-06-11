@@ -10,9 +10,6 @@ import WebKit
 
 class LectureViewController: UIViewController, WKNavigationDelegate {
     
-    let backgroundView = #colorLiteral(red: 0.02744890936, green: 0.02745261975, blue: 0.09043943137, alpha: 1)
-    let yellowProject = #colorLiteral(red: 0.9903424382, green: 0.8046727777, blue: 0.003792768111, alpha: 1)
-    
     let dateFormatterGet = DateFormatter()
     let dateFormatterPrint = DateFormatter()
     
@@ -21,7 +18,7 @@ class LectureViewController: UIViewController, WKNavigationDelegate {
     
     private lazy var contentView: UIView = {
         let content = UIView()
-        content.backgroundColor = yellowProject
+        content.backgroundColor = colorYellow
         content.layer.cornerRadius = 10
         content.translatesAutoresizingMaskIntoConstraints = false
         return content
@@ -64,8 +61,8 @@ class LectureViewController: UIViewController, WKNavigationDelegate {
         let text = UITextView()
         text.isEditable = false
         text.isScrollEnabled = false
-        text.backgroundColor = backgroundView
-        text.layer.borderColor = yellowProject.cgColor
+        text.backgroundColor = colorView
+        text.layer.borderColor = colorYellow.cgColor
         text.layer.borderWidth = 2
         text.layer.cornerRadius = 10
         text.sizeToFit()
@@ -124,7 +121,7 @@ extension LectureViewController {
     
     private func setupView() {
         
-        view.backgroundColor = backgroundView
+        view.backgroundColor = colorView
         view.addSubview(textView)
         view.addSubview(contentView)
         view.addSubview(buttonYoutube)
@@ -181,7 +178,7 @@ extension LectureViewController {
         
         NSLayoutConstraint.activate([
             buttonYoutube.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            buttonYoutube.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            buttonYoutube.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 20),
             buttonYoutube.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
     }

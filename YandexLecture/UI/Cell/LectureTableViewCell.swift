@@ -9,14 +9,6 @@ import UIKit
 
 class LectureTableViewCell: UITableViewCell {
     
-    private let yellowProject = #colorLiteral(red: 0.9903424382, green: 0.8046727777, blue: 0.003792768111, alpha: 1)
-    
-    //    let dateComponents = DateComponents(year: year, month: month, day: day)
-    
-    // let datToday = Calendar.current.isDateInToday(dateComponents)
-    
-    
-    
     let labelTitle: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
