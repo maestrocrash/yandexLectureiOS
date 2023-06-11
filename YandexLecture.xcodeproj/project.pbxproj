@@ -18,6 +18,7 @@
 		D301FDAE2A31F026000218F5 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301FDAD2A31F026000218F5 /* CourseTableViewController.swift */; };
 		D32C96812A3203FF005FE7EF /* LectureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C96802A3203FF005FE7EF /* LectureViewController.swift */; };
 		D32C96842A323668005FE7EF /* LectureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C96832A323668005FE7EF /* LectureTableViewCell.swift */; };
+		D34118E02A35F92C00F33166 /* WebScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34118DF2A35F92C00F33166 /* WebScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D301FDAD2A31F026000218F5 /* CourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
 		D32C96802A3203FF005FE7EF /* LectureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureViewController.swift; sourceTree = "<group>"; };
 		D32C96832A323668005FE7EF /* LectureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureTableViewCell.swift; sourceTree = "<group>"; };
+		D34118DF2A35F92C00F33166 /* WebScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				D32C96822A323650005FE7EF /* Cell */,
 				D301FDAD2A31F026000218F5 /* CourseTableViewController.swift */,
 				D32C96802A3203FF005FE7EF /* LectureViewController.swift */,
+				D34118DF2A35F92C00F33166 /* WebScreenViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				D301FD902A31DC88000218F5 /* AppDelegate.swift in Sources */,
 				D301FDAA2A31EA1D000218F5 /* Course.swift in Sources */,
 				D32C96842A323668005FE7EF /* LectureTableViewCell.swift in Sources */,
+				D34118E02A35F92C00F33166 /* WebScreenViewController.swift in Sources */,
 				D301FDAE2A31F026000218F5 /* CourseTableViewController.swift in Sources */,
 				D301FD922A31DC88000218F5 /* SceneDelegate.swift in Sources */,
 				D301FDA82A31E973000218F5 /* Lectrure.swift in Sources */,

@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import WebKit
 
-class LectureViewController: UIViewController {
+class LectureViewController: UIViewController, WKNavigationDelegate {
     
     let backgroundView = #colorLiteral(red: 0.02744890936, green: 0.02745261975, blue: 0.09043943137, alpha: 1)
     let yellowProject = #colorLiteral(red: 0.9903424382, green: 0.8046727777, blue: 0.003792768111, alpha: 1)
     
     let dateFormatterGet = DateFormatter()
     let dateFormatterPrint = DateFormatter()
+    
+    var webView: WKWebView!
+    var screenWebView = WebScreenViewController()
     
     private lazy var contentView: UIView = {
         let content = UIView()
@@ -56,9 +60,7 @@ class LectureViewController: UIViewController {
     }()
     
     private lazy var textView: UITextView = {
-        
-        
-        
+
         let text = UITextView()
         text.isEditable = false
         text.isScrollEnabled = false
@@ -73,6 +75,34 @@ class LectureViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
+    
+    
+    private lazy var buttonYoutube: UIButton = {
+        let button = UIButton()
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+             .foregroundColor: UIColor.white,
+             .font: UIFont.systemFont(ofSize: 20, weight: .semibold),
+          ]
+     
+        button.backgroundColor = #colorLiteral(red: 0.9925361276, green: 0.08638039976, blue: 0, alpha: 1)
+        button.setTitleColor(.white, for: .normal)
+        button.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        button.tintColor = .white
+        button.configuration = .plain()
+        button.layer.cornerRadius = 10
+        button.configuration?.cornerStyle = .capsule
+        button.configuration?.imagePadding = 10
+        button.configuration?.title = "Play YouTube"
+        button.configuration?.buttonSize = .medium
+    
+        button.setAttributedTitle(NSAttributedString(string: "Play YouTube", attributes: attributes), for: .normal)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     
     var lecture: Lecture? {
         didSet {
@@ -97,13 +127,23 @@ extension LectureViewController {
         view.backgroundColor = backgroundView
         view.addSubview(textView)
         view.addSubview(contentView)
+        view.addSubview(buttonYoutube)
         contentView.addSubview(labelNameTeacher)
         contentView.addSubview(labelDate)
         contentView.addSubview(labelTeacherPosition)
         contentView.addSubview(imageAvatar)
-        
+
+        buttonYoutube.addTarget(self, action: #selector(loadYoutube), for: .touchUpInside)
         navigationController?.navigationBar.prefersLargeTitles = true
         setup(with: lecture)
+    }
+
+    @objc private func loadYoutube() {
+        if let lecture {
+            screenWebView.urlYouTube = lecture.urlYoutube
+            screenWebView.titleNav = lecture.name
+            navigationController?.pushViewController(screenWebView, animated: true)
+        }
     }
     
     private func setupConstraint() {
@@ -124,7 +164,6 @@ extension LectureViewController {
             
             labelDate.leadingAnchor.constraint(equalTo: labelNameTeacher.leadingAnchor),
             labelDate.bottomAnchor.constraint(equalTo: imageAvatar.bottomAnchor),
-            // labelDate.topAnchor.constraint(equalTo: labelNamePosition.bottomAnchor, constant: 5),
             labelDate.trailingAnchor.constraint(equalTo: labelNameTeacher.trailingAnchor),
             
             
@@ -138,8 +177,12 @@ extension LectureViewController {
             textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             textView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8),
             textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            //            textView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
-            //textView.heightAnchor.constraint(equalToConstant: 200),
+        ])
+        
+        NSLayoutConstraint.activate([
+            buttonYoutube.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            buttonYoutube.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            buttonYoutube.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
     }
     
@@ -157,6 +200,14 @@ extension LectureViewController {
             
             labelNameTeacher.text = lecture.namePosition
             labelTeacherPosition.text = lecture.position
+        
+        
+            if  lecture.urlYoutube == ""  {
+                buttonYoutube.isHidden = true
+            } else {
+                buttonYoutube.isHidden = false
+            }
+            
             
             if let urlImage = lecture.avatar {
                 imageAvatar.load(url: URL(string: urlImage)!)
@@ -177,7 +228,6 @@ extension LectureViewController {
             ]
             
             textView.attributedText =  NSAttributedString(string: lecture.description, attributes: attributes)
-            //textView.text = lecture.description
             
             navigationItem.title = lecture.name
         } else {
