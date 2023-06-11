@@ -22,12 +22,12 @@
                                     <constraint firstAttribute="height" constant="29.329999999999998" id="qyK-1h-mEv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="24"/>
-                                <color key="textColor" red="0.99250608679999996" green="0.80399000639999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.99215686274509807" green="0.80392156862745101" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.02783201821" green="0.027175579219999999" blue="0.089854530990000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.027450980392156862" green="0.027450980392156862" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cYt-D8-k9V" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GC4-r2-9te"/>
                             <constraint firstItem="cYt-D8-k9V" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="M5T-gb-E4H"/>
